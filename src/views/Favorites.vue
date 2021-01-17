@@ -1,5 +1,6 @@
 <template>
-  <div class="home">
+  <div class="favorites">
+    <h1 class="page-title">Favorites</h1>
     <div class="images" ref="masonry">
       <div class="images__item" v-for="(image, idx) in images" :key="idx">
         <img class="images__item-img" :src="image.src">
@@ -11,7 +12,6 @@
         </div>
       </div>
     </div>
-    <button class="btn btn_darkgray btn_middle btn-load-more">Load more</button>
   </div>
 </template>
 
@@ -104,7 +104,7 @@ export default {
       this.$nextTick(() => {
         /* eslint-disable */
         this.masonry = new Masonry(this.$refs.masonry, { // eslint-disable-line no-use-before-define
-        /* eslint-enable */
+          /* eslint-enable */
           itemSelector: '.images__item',
           fitWidth: true,
           gutter: 21.2
