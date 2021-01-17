@@ -20,37 +20,37 @@ export default {
     return {
       images: [
         {
-          title: 'Lorem ipsum1',
+          title: 'Lorem ipsum',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
           src: require('@/assets/img/image1.jpg'),
           qtLikes: 24
         },
         {
-          title: 'Lorem ipsum2',
+          title: 'Lorem ipsum',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
           src: require('@/assets/img/image2.jpg'),
           qtLikes: 24
         },
         {
-          title: 'Lorem ipsum3',
+          title: 'Lorem ipsum',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
           src: require('@/assets/img/image3.jpg'),
           qtLikes: 24
         },
         {
-          title: 'Lorem ipsum4',
+          title: 'Lorem ipsum',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
           src: require('@/assets/img/image4.jpg'),
           qtLikes: 24
         },
         {
-          title: 'Lorem ipsum5',
+          title: 'Lorem ipsum',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
           src: require('@/assets/img/image5.jpg'),
           qtLikes: 24
         },
         {
-          title: 'Lorem ipsum6',
+          title: 'Lorem ipsum',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
           src: require('@/assets/img/image6.jpg'),
           qtLikes: 24
