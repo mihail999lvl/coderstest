@@ -10,13 +10,13 @@
         </div>
         <div class="form__group">
           <label>Title</label>
-          <input type="text" name="password" placeholder="IMAGE TITLE">
+          <input type="text" name="text" v-model="title" placeholder="IMAGE TITLE">
         </div>
         <div class="form__group">
           <label>Description</label>
-          <input type="text" name="password" placeholder="IMAGE DESCRIPTION">
+          <input type="text" name="description" v-model="description" placeholder="IMAGE DESCRIPTION">
         </div>
-        <input type="submit" class="btn btn_darkgray btn_big" value="Upload">
+        <input type="submit" class="btn btn_darkgray btn_big" value="Upload" v-on:click.stop.prevent="uploadInStore">
       </form>
     </div>
     <div class="overlay">
@@ -34,7 +34,9 @@ export default {
   data () {
     return {
       file: null,
-      content: null
+      content: null,
+      title: '',
+      description: ''
     }
   },
   methods: {
@@ -58,6 +60,22 @@ export default {
     },
     closeModal () {
       document.querySelector('.overlay').classList.remove('active')
+    },
+    uploadInStore () {
+      if (this.src) {
+        const images = this.$store.getters.getImages
+        const lastId = images[images.length - 1].id
+        const dataImage = {
+          title: this.title,
+          description: this.description,
+          src: this.src,
+          isMyFavorite: false,
+          qtLikes: 0,
+          id: lastId + 1
+        }
+        this.$store.commit('imageNewUpload', dataImage)
+        alert('Upload completed')
+      }
     }
   },
   computed: {

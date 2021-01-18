@@ -7,7 +7,7 @@
         <p class="images__item-desc">{{ image.description }}</p>
         <div class="images__item-likes">
           <button class="images__item-likes-up" @click="toggleLike(image)"><img src="@/assets/img/like.svg"></button>
-          <span>{{ image.qtLikes }}</span>
+          <span>{{ image.qtLikes != 0 ? image.qtLikes : '' }}</span>
         </div>
       </div>
     </div>
@@ -54,14 +54,19 @@ export default {
   },
   mounted () {
     this.$nextTick(this.runMasonry)
+    console.log(this.$route.name)
     let self = this // eslint-disable-line
-    window.addEventListener('scroll', function () {
-      let imagesFooter = document.querySelector('.images').offsetHeight // eslint-disable-line
-      let scroll = document.documentElement.scrollTop // eslint-disable-line
-      console.log(scroll, imagesFooter)
-      if (scroll > imagesFooter) {
-        self.loadMore()
+    function handleScroll () {
+      if (document.querySelector('.images') !== null) {
+        let imagesFooter = document.querySelector('.images').offsetHeight // eslint-disable-line
+        let scroll = document.documentElement.scrollTop // eslint-disable-line
+        if (scroll + 300 > imagesFooter) {
+          self.loadMore()
+        }
       }
+    }
+    window.addEventListener('scroll', function () {
+      handleScroll()
     })
   }
 }
@@ -100,6 +105,10 @@ export default {
           background: 0;
           padding: 0;
           cursor: pointer;
+          line-height: 1;
+          img {
+            display: block;
+          }
           &:focus {
             outline: none;
           }

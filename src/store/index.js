@@ -127,6 +127,9 @@ export default createStore({
     },
     imagesIncrease (state, images) {
       state.images = images
+    },
+    imageNewUpload (state, dataImage) {
+      state.images.unshift(dataImage)
     }
   },
   actions: {
