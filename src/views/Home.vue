@@ -23,9 +23,6 @@ export default {
       qtItems: 20
     }
   },
-  mounted () {
-    this.$nextTick(this.runMasonry)
-  },
   methods: {
     runMasonry () {
       this.$nextTick(() => {
@@ -54,6 +51,18 @@ export default {
     images () {
       return this.$store.getters.getImages.slice(0, this.qtItems)
     }
+  },
+  mounted () {
+    this.$nextTick(this.runMasonry)
+    let self = this // eslint-disable-line
+    window.addEventListener('scroll', function () {
+      let imagesFooter = document.querySelector('.images').offsetHeight // eslint-disable-line
+      let scroll = document.documentElement.scrollTop // eslint-disable-line
+      console.log(scroll, imagesFooter)
+      if (scroll > imagesFooter) {
+        self.loadMore()
+      }
+    })
   }
 }
 </script>
