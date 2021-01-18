@@ -6,7 +6,7 @@
         <p class="images__item-title">{{ image.title }}</p>
         <p class="images__item-desc">{{ image.description }}</p>
         <div class="images__item-likes">
-          <button class="images__item-likes-up"><img src="@/assets/img/like.svg"></button>
+          <button class="images__item-likes-up" @click="toggleLike(image)"><img src="@/assets/img/like.svg"></button>
           <span>{{ image.qtLikes }}</span>
         </div>
       </div>
@@ -19,82 +19,7 @@
 export default {
   name: 'Home',
   data () {
-    return {
-      images: [
-        {
-          title: 'Lorem ipsum',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          src: require('@/assets/img/image1.jpg'),
-          qtLikes: 24
-        },
-        {
-          title: 'Lorem ipsum',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          src: require('@/assets/img/image2.jpg'),
-          qtLikes: 24
-        },
-        {
-          title: 'Lorem ipsum',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          src: require('@/assets/img/image3.jpg'),
-          qtLikes: 24
-        },
-        {
-          title: 'Lorem ipsum',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          src: require('@/assets/img/image4.jpg'),
-          qtLikes: 24
-        },
-        {
-          title: 'Lorem ipsum',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          src: require('@/assets/img/image5.jpg'),
-          qtLikes: 24
-        },
-        {
-          title: 'Lorem ipsum',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          src: require('@/assets/img/image6.jpg'),
-          qtLikes: 24
-        },
-        {
-          title: 'Lorem ipsum7',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          src: require('@/assets/img/image7.jpg'),
-          qtLikes: 24
-        },
-        {
-          title: 'Lorem ipsum',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          src: require('@/assets/img/image8.jpg'),
-          qtLikes: 24
-        },
-        {
-          title: 'Lorem ipsum',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          src: require('@/assets/img/image9.jpg'),
-          qtLikes: 24
-        },
-        {
-          title: 'Lorem ipsum',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          src: require('@/assets/img/image10.jpg'),
-          qtLikes: 24
-        },
-        {
-          title: 'Lorem ipsum',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          src: require('@/assets/img/image11.jpg'),
-          qtLikes: 24
-        },
-        {
-          title: 'Lorem ipsum',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          src: require('@/assets/img/image12.jpg'),
-          qtLikes: 24
-        }
-      ]
-    }
+    return {}
   },
   mounted () {
     this.$nextTick(this.runMasonry)
@@ -110,6 +35,17 @@ export default {
           gutter: 21.2
         })
       })
+    },
+    toggleLike (image) {
+      const id = image.id
+      const qtLikes = image.isMyFavorite ? image.qtLikes - 1 : image.qtLikes + 1
+      const isMyFavorite = !image.isMyFavorite
+      this.$store.commit('toggleLikeImage', { id: id, qtLikes: qtLikes, isMyFavorite: isMyFavorite })
+    }
+  },
+  computed: {
+    images () {
+      return this.$store.getters.getImages
     }
   }
 }
@@ -118,6 +54,7 @@ export default {
   .images {
     margin: 30px auto 35px;
     position: relative;
+    transition: all 0.3s;
     &__item {
       width: 289px;
       // margin-right: 21.2px;
