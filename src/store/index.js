@@ -109,6 +109,9 @@ export default createStore({
     },
     getImagesFavorite (state) {
       return state.images.filter(item => item.isMyFavorite)
+    },
+    getImagesMore (state) {
+      return state.images
     }
   },
   mutations: {
@@ -121,6 +124,9 @@ export default createStore({
           item.isMyFavorite = dataImage.isMyFavorite
         }
       })
+    },
+    imagesIncrease (state, images) {
+      state.images = images
     }
   },
   actions: {

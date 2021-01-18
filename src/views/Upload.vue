@@ -71,16 +71,6 @@ export default {
 }
 </script>
 <style lang="scss">
-.page-title {
-  font-size: 34px;
-  font-weight: 700;
-  text-transform: uppercase;
-  text-align: center;
-  color: $black;
-  margin-top: 40px;
-  line-height: 1;
-  margin-bottom: 70px;
-}
 .forms {
   width: 368px;
   max-width: 100%;

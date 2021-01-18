@@ -21,13 +21,28 @@
 export default {
   data () {
     return {
-      mobileNavIsActive: false
+      mobileNavIsActive: false,
+      images: []
     }
   },
   methods: {
     toggleNavMobile () {
       this.mobileNavIsActive = !this.mobileNavIsActive
     }
+  },
+  mounted () {
+    this.images = this.$store.getters.getImages
+    const id = this.images[this.images.length - 1].id
+    const title = this.images[this.images.length - 1].title
+    const description = this.images[this.images.length - 1].description
+    const src = this.images[this.images.length - 1].src
+    const qtLikes = this.images[this.images.length - 1].qtLikes
+    const isMyFavorite = false
+    for (let i = 1; i < 100; i++) {
+      const newId = id + i
+      this.images.push({ title: title, description: description, src: src, qtLikes: qtLikes, isMyFavorite: isMyFavorite, id: newId })
+    }
+    this.$store.commit('imagesIncrease', this.images)
   }
 }
 </script>
@@ -88,6 +103,9 @@ body {
   text-decoration: none;
   line-height: 1;
   cursor: pointer;
+  &:focus {
+    outline: none;
+  }
   &_little {
     height: 40px;
     width: 178px;
@@ -124,6 +142,16 @@ body {
     background-position: 16px center;
     background-repeat: no-repeat;
   }
+}
+.page-title {
+  font-size: 34px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  color: $black;
+  margin-top: 40px;
+  line-height: 1;
+  margin-bottom: 70px;
 }
 input.btn {
   outline: none;

@@ -11,7 +11,7 @@
         </div>
       </div>
     </div>
-    <button class="btn btn_darkgray btn_middle btn-load-more">Load more</button>
+    <button class="btn btn_darkgray btn_middle btn-load-more" @click="loadMore">Load more</button>
   </div>
 </template>
 
@@ -19,7 +19,9 @@
 export default {
   name: 'Home',
   data () {
-    return {}
+    return {
+      qtItems: 20
+    }
   },
   mounted () {
     this.$nextTick(this.runMasonry)
@@ -41,11 +43,16 @@ export default {
       const qtLikes = image.isMyFavorite ? image.qtLikes - 1 : image.qtLikes + 1
       const isMyFavorite = !image.isMyFavorite
       this.$store.commit('toggleLikeImage', { id: id, qtLikes: qtLikes, isMyFavorite: isMyFavorite })
+    },
+    loadMore () {
+      this.qtItems = this.qtItems + 20
+      console.log('this.qtItems', this.qtItems)
+      this.runMasonry()
     }
   },
   computed: {
     images () {
-      return this.$store.getters.getImages
+      return this.$store.getters.getImages.slice(0, this.qtItems)
     }
   }
 }
